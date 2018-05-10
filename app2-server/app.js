@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-//var cors = require('cors');/*引入cors包解决跨域*/
+var cors = require('cors');/*引入cors包解决跨域*/
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -23,23 +23,34 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+/*配置cors*/
+app.use(cors({
+    origin:'http://localhost:8088',//允许域访问
+    methods:['GET','POST'],//只允许get和post请求
+    credentials:true,//是否带cookie
+    header:'Content-Type, Content-Length, Authorization, Accept, X-Requested-With'
+}));
+
+
+/*app.use('*', function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', 'http://localhost:8088');
+    res.header('Access-Control-Allow-Headers', 'Content-Type,Content-Length, Authorization,\'Origin\',Accept,X-Requested-With');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.header('Access-Control-Allow-Credentials', true);
+    res.header('X-Powered-By', ' 3.2.1');
+    res.header('Content-Type', 'application/json;charset=utf-8');
+    /!*if (req.method === 'OPTIONS') {
+        res.sendStatus(200);
+    } else {
+        next();
+    }*!/
+    next();
+});*/
+
+
 app.use('/', index);
 app.use('/users', users);
 
-/*配置cors*/
-
-/*app.use(cors({
-    origin:true,//允许所有域访问
-   // methods:['GET','POST'],//只允许get和post请求
-    credentials:true//是否带cookie
-}));*/
-/*app.use(function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:8088/'); //这个表示任意域名都可以访问，这样写不能携带cookie了。
-    res.header('Access-Control-Allow-Credentials', true); // 允许服务器端发送Cookie数据
-    //res.header('Access-Control-Allow-Origin', 'www.baidu.com'); //这样写，只有www.baidu.com 可以访问。
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
-    res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');//设置方法
-});*/
 
 
 // catch 404 and forward to error handler
