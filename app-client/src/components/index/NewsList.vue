@@ -1,29 +1,11 @@
 <template>
   <div class="news-list">
     <ul class="news-list-ul">
-      <!--<li class="news-list-li" >
-        <router-link to="/news">
-          <div class="text">
-            <h4>Iconfont+ 完美的图标字体</h4>
-            <div class="text-p">
-              <p class="introduction">阿里妈妈MUX倾力打造的矢量图标管理、交流平台。
-                设计师将图标上传到Iconfont平台，用户可以自定义下载多种格式的icon，平台也可将图标转换为字体，便于前端工程师自由调整与调用。</p>
-            </div>
-            <ul>
-              <li class="tag">Icon</li>
-              <li class="date">2018.01.01</li>
-              <li class="comment"><span class="glyphicon glyphicon-comment"></span> 0</li>
-            </ul>
-          </div>
-          <div class="img">
-            <img src="../../assets/img/p1.png" alt="" />
-          </div>
-        </router-link>
-      </li>-->
       <li class="news-list-ulli" v-for="news in newsList">
-        <router-link to="/news">
+        <router-link v-bind:to="'/news/'+ news.nid ">
           <div class="text">
             <h5>{{news.title}}</h5>
+            <h5>{{news.nid}}</h5>
             <div class="text-p">
               <p class="introduction">{{news.content}}</p>
             </div>
