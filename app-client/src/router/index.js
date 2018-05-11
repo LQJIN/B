@@ -20,7 +20,7 @@ export default new Router({
       component: Index
     },
     {
-      path: '/news',
+      path: '/news/:nid',
       name: 'News',
       component: News
     },
