@@ -33,10 +33,36 @@
         </ul>
         <button class="close">Cancel</button>
       </div>
-      <div class="popup-bg"></div>
+      <!--<div class="popup-bg"></div>-->
     </div>
   </div>
 </template>
+
+<script>
+  import $ from 'jquery'
+
+  export default {
+    data(){
+      let msg = 0;
+      return {
+        msg
+      }
+    },
+    mounted:function () {
+      $(document).ready(function () {
+        $('.icon-share, .close, .popup-bg').click(function(e){
+          e.preventDefault(); //阻止默认点击事件
+          $('.popup').toggleClass('show');
+        })
+      })
+    },
+    methods:{
+      msgAdd(){
+        this.msg++;
+      }
+    }
+  }
+</script>
 
 <style scoped>
   .news-foot{position:fixed; width: 100%; bottom: 0; }
@@ -82,26 +108,3 @@
   .popup-bg{ position: relative; z-index: 100; width: 100%; height: 100%; background: rgba(0,0,0,.3); }
 </style>
 
-<script>
-  export default {
-    data(){
-      let msg = 0;
-      return {
-        msg
-      }
-    },
-    mounted:function () {
-      $(document).ready(function () {
-        $('.icon-share, .close, .popup-bg').click(function(e){
-          e.preventDefault(); //阻止默认点击事件
-          $('.popup').toggleClass('show');
-        })
-      })
-    },
-    methods:{
-      msgAdd(){
-        this.msg++;
-      }
-    }
-  }
-</script>
