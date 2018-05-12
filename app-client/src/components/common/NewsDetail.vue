@@ -1,10 +1,10 @@
 <template>
   <div class="news-detail">
-    <article >
-      <h2>{{newsDetail.title}}</h2>
-      <h6>{{newsDetail.time}}</h6>
+    <article v-for="detail in newsDetail">
+      <h2>{{detail.title}}</h2>
+      <h6>{{detail.time}}</h6>
      <!-- <img src="../../assets/img/p2.png" alt="">-->
-      <p>{{newsDetail.content}}</p>
+      <p>{{detail.content}}</p>
     </article>
   </div>
 </template>
@@ -29,9 +29,9 @@
         var nid = this.newsId.nid;
         Axios.defaults.withCredentials = true;
         Axios.get('http://localhost:3000/newsDetail',{params: {newsId: nid}}).then((res)=>{
-          //测试数据请求
-          console.log(res.data);
-          this.newsDetail = this.newsDetail.concat(res.data.subjects);
+          /*测试数据请求
+          console.log(res.data);*/
+          this.newsDetail = this.newsDetail.concat(res.data);
         });
       }
     }
