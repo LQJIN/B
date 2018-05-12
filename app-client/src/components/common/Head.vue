@@ -3,7 +3,7 @@
     <ul>
       <li><p class="icon">NewsDaily</p></li>
       <li><span class="icon icon-search"></span></li>
-      <li><router-link to="/me"><span class="icon icon-user"></span></router-link></li>
+      <li><router-link to="/signin"><span class="icon icon-user"></span></router-link></li>
     </ul>
   </div>
 </template>
