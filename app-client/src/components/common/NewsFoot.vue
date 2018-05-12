@@ -104,7 +104,8 @@
     /*设置背景、阴影等外观样式*/
     background: #FFF; box-shadow: 0 0.1rem 0.15rem rgba(0,0,0,.2);
   }
-  .popup-content button{position: absolute; bottom: 0; color: #FFF; background: #E74C3C; width: 100%; border: 0; font-size: 0.4rem; padding: 0.1rem 0.5rem;}
+  .popup-content button{position: absolute; bottom: 0; color: #FFF; background: #E74C3C;
+    width: 100%; border: 0; font-size: 0.4rem; padding: 0.1rem 0.5rem;}
   .popup-bg{ position: relative; z-index: 100; width: 100%; height: 100%; background: rgba(0,0,0,.3); }
 </style>
 
