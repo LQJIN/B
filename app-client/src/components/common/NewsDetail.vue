@@ -15,7 +15,7 @@
   export default {
     data(){
       return{
-        newsId: this.$route.params,//this.$route.params.是固定的,获取url参数
+        newsId: this.$route.params,//this.$route.params.是固定的,获取url传来的参数nid
         newsDetail:[]
       }
     },
@@ -29,6 +29,7 @@
         var nid = this.newsId.nid;
         Axios.defaults.withCredentials = true;
         Axios.get('http://localhost:3000/newsDetail',{params: {newsId: nid}}).then((res)=>{
+          /*获取vue路由上传来的参数nid，作为get请求的参数传给server*/
           /*测试数据请求
           console.log(res.data);*/
           this.newsDetail = this.newsDetail.concat(res.data);
