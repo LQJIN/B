@@ -20,7 +20,7 @@ export default new Router({
       component: Index
     },
     {
-      path: '/news/:nid',
+      path: '/news/:nid',/*获取组件中的nid*/
       name: 'News',
       component: News
     },
