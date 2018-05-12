@@ -5,7 +5,7 @@
         <router-link v-bind:to="'/news/'+ news.nid ">
           <div class="text">
             <h5>{{news.title}}</h5>
-            <h5>{{news.nid}}</h5>
+            <!--测试nid<h5>{{news.nid}}</h5>-->
             <div class="text-p">
               <p class="introduction">{{news.content}}</p>
             </div>
