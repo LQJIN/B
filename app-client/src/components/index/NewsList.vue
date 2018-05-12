@@ -2,7 +2,7 @@
   <div class="news-list">
     <ul class="news-list-ul">
       <li class="news-list-ulli" v-for="news in newsList">
-        <router-link v-bind:to="'/news/'+ news.nid ">
+        <router-link v-bind:to="'/news/'+ news.nid "><!--传输nid给路由-->
           <div class="text">
             <h5>{{news.title}}</h5>
             <!--测试nid<h5>{{news.nid}}</h5>-->
@@ -56,6 +56,7 @@
         var length = this.newsList.length;
         Axios.defaults.withCredentials = true;
         Axios.get('http://localhost:3000/index').then((res)=>{
+          /*get获取news数据*/
           //测试数据请求
           //console.log(res.data);
           this.newsList = this.newsList.concat(res.data);
