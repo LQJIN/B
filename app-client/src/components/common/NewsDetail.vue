@@ -4,7 +4,7 @@
       <h2>{{detail.title}}</h2>
       <h6>{{detail.time}}</h6>
      <!-- <img src="../../assets/img/p2.png" alt="">-->
-      <p>{{detail.content}}</p>
+      <p v-model="detail.content">{{detail.content}}</p>
     </article>
   </div>
 </template>
@@ -42,9 +42,9 @@
 </script>
 
 <style scoped>
-  .news-detail{margin-top: 0.92rem; color: #2c3e50;}
-  .news-detail h2{font-size: 0.3rem; font-weight: bold;}
-  .news-detail h6{font-size: 0.2rem;}
+  .news-detail{margin-top: 0.6rem;}
+  .news-detail h2{font-size: 0.3rem; font-weight: bold; color: #000000;}
+  .news-detail h6{font-size: 0.2rem; color: #999999;}
   .news-detail p{font-size: 0.22rem; }
   .news-detail article{display: block; padding: 0.2rem; width: 6rem; word-wrap:break-word; }
   .news-detail img{ width: 5.6rem; height: 2.5rem; margin: 0.2rem;}
