@@ -14,7 +14,7 @@ require('./assets/js/slideout.js');*/
 
 /*引入图标文件,在全局都起作用*/
 require('./assets/fonts/glyphicons/css/glyphicons.css');
-require('./assets/fonts/font-awesome/css/font-awesome.min.css');
+require('./assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css');
 /* 有公共样式reset.css,作用域设为全局 */
 require ("./assets/css/reset.css");
 
