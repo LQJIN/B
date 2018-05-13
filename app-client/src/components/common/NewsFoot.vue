@@ -3,20 +3,23 @@
     <ul>
       <li>
         <a v-on:click="msgAdd()">
-          <div>
-            <h5>{{msg}}</h5>
-            <span class="icon-thumbs-up"></span>
-          </div>
+          <h5>{{msg}}</h5>
+          <span class="fa fa-thumbs-o-up"></span>
         </a>
       </li>
       <li>
         <router-link to="/comment">
           <h5>6</h5>
-          <span class=" icon-comments"></span>
+          <span class="fa fa-commenting-o"></span>
         </router-link>
       </li>
+      <!--li>
+        <a>
+          <span v-on:click="toggle()" v-bind:class="{'fa fa-sticky-note-o': isEmpty, 'fa fa-sticky-note': !isEmpty}"></span>
+        </a>
+      </li>-->
       <li>
-        <a><span class="icon-share"></span></a>
+        <a><span class="fa fa-share-alt"></span></a>
       </li>
     </ul>
     <div class="popup">
@@ -50,7 +53,7 @@
     },
     mounted:function () {
       $(document).ready(function () {
-        $('.icon-share, .close, .popup-bg').click(function(e){
+        $('.fa-share-alt, .close, .popup-bg').click(function(e){
           e.preventDefault(); //阻止默认点击事件
           $('.popup').toggleClass('show');
         })
@@ -59,7 +62,10 @@
     methods:{
       msgAdd(){
         this.msg++;
-      }
+      }/*,
+      toggle:function () {
+        this.isEmpty = !this.isEmpty;
+      }*/
     }
   }
 </script>
@@ -67,12 +73,12 @@
 <style scoped>
   .news-foot{position:fixed; width: 100%; bottom: 0; }
 
-  ul {display: flex; height: 0.7rem;line-height: 0.7rem;}
+  ul {display: flex; height: 0.6rem;line-height: 0.6rem;}
   ul li {flex: 1;  background-color: #ffffff; text-align: center; font-size: 0.3rem;}
-  ul li:nth-child(3){padding-top: 0.03rem;}
+  ul li:nth-child(3){padding-top: 0.02rem;}
   .news-foot a{display: inline-block; width: 100%;height: 100%; color: #1c4d9c; text-align:center;}
 
-  .news-foot span{width: 0.45rem; height: 0.7rem; line-height: 0.7rem;  font-size: 0.4rem;}
+  .news-foot span{width: 0.44rem; height: 0.6rem; line-height: 0.6rem;  font-size: 0.3rem;}
   .news-foot h5{ display: inline-block; text-align: center; position: relative; font-size: 0.25rem;}
   /*解决了foot.vue和BlogFoot.vue中图标和文字不能对齐的问题。
       文字在<h5>标签中，给h5设置为inline-block行块，然后通过定位控制了文字与图标的位置。*/
