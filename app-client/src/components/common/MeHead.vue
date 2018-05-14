@@ -4,7 +4,7 @@
     <h2>Sign In</h2>
     <slot>
       <router-link to="/settings">
-        <span class="glyphicon glyphicon-cog"></span>
+        <span class="fa fa-gear"></span>
       </router-link>
     </slot>
   </div>
