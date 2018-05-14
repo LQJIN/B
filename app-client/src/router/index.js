@@ -6,7 +6,7 @@ import NewsCommentAdd from '@/components/common/NewsCommentAdd.vue';
 import Me from '@/components/index/MeReg.vue';
 import MeMainPage from '@/components/index/MeMainPage.vue';
 import MeChange from '@/components/index/MeChange.vue';
-import Login from '@/components/index/MeSignIn.vue';
+import SignIn from '@/components/index/MeSignIn.vue';
 import Settings from '@/components/index/Settings.vue';
 
 
@@ -35,19 +35,14 @@ export default new Router({
       component: Settings
     },
     {
-      path: '/me',
-      name: 'Me',
-      component: Me
+      path: '/signin',
+      name: 'SignIn',
+      component: SignIn
     },
     {
       path: '/memainpage',
       name: 'MeMainPage',
       component: MeMainPage
-    },
-    {
-      path: '/login',
-      name: 'Login',
-      component: Login
     },
     {
       path: '/mechange',
