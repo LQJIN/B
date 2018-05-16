@@ -3,7 +3,7 @@
     <ul>
       <li><p class="fa">NewsDaily</p></li>
       <li><span class="fa fa-search"></span></li>
-      <li><router-link to="/signin"><span class="fa fa-user"></span></router-link></li>
+      <li><router-link to="/signin" ><span class="fa fa-user"></span></router-link></li>
     </ul>
   </div>
 </template>
@@ -24,9 +24,3 @@
   .head span{ width: 0.6rem; height: 0.6rem; line-height: 0.6rem;
     text-align:center; float: right; font-size: 0.25rem; color: #ffffff; }
 </style>
-
-<script>
-  export default {
-
-  }
-</script>
