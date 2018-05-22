@@ -2,26 +2,27 @@
   <div class="create-account">
     <sign-head></sign-head>
     <div class="sign-content" id="sign-content">
-      <div class="beforeusername" >{{ before_username }}</div>
+      <div class="before-account" >{{before_account}}</div>
       <div class="name input">
         <span class="fa fa-user-circle-o"></span>
-        <input type="text" name="account" id="account" placeholder="Username (4-8 characters)"
-               v-model="account" v-on:blur="check_username" v-on:input=""/>
-        <!--v-on:blur="check_username"当输入域失去焦点触发blur() -->
+        <input type="text" name="account" id="account" placeholder="account (4-8 characters)"
+               v-model="account" v-on:blur="check_username"/>
+        <!--v-on:blur="check_username"blur()当输入域失去焦点触发 -->
       </div>
       <div class="pass input">
         <span class="fa fa-key"></span>
-        <input type="password" name="pass" id="password" placeholder="Password (6-10 characters)"
-               v-model="password" v-on:input=""/>
+        <input type="password" name="pass" id="password" placeholder="password 6-16character&number&special symbol"
+               v-model="password"/>
       </div>
       <div class="repass input">
         <span class="fa fa-lock"></span>
-        <input type="password" name="repass" id="repass" placeholder="Confirm password"
-               v-model="repass" v-on:input=""/>
+        <input type="password" name="repass" id="repass" placeholder="confirm password"
+               v-model="repass" v-on:blur="check_password"/>
       </div>
-      <router-link to="">
-        <div class="button">Sign up</div><!-- v-on:click="check"-->
-      </router-link>
+      <div class="after-repass" >{{after_repass}}</div>
+      <a>
+        <div class="button" v-on:click="check">Sign up</div>
+      </a>
       <div class="to-signin">
         <p>Already have an account?<router-link to="/signin" >Sign in</router-link></p>
         <!--p标签和a标签在一行上,把A放到P结束标记前面-->
@@ -35,6 +36,7 @@
   import SignHead from '../common/SignHead.vue'
   import Foot from '../common/Foot.vue'
   import Axios from 'axios'
+  import qs from 'qs'
   import $ from 'jquery'
 
 
@@ -45,14 +47,12 @@
         account:"",
         password:"",
         repass:"",
-        before_username:"",
+        before_account:"",
+        after_repass:""
       }
     },
     components: {
       SignHead
-    },
-    watch:{
-
     },
     mounted(){
       this.$store.dispatch('changeTitle', 'Sign up');
@@ -65,7 +65,8 @@
         $(this).parent().css({"border-bottom": "0.01rem solid #e7e7e7"});
       });
       $("input").on("input propertychange", function () {
-        if ( ($.trim($('#account ').val()) !== "")&&($.trim($('#password').val()) !== "")&&($.trim($('#repass').val()) !== "")){
+        if ( ($.trim($('#account ').val()) !== "")&&($.trim($('#password').val()) !== "")
+          &&($.trim($('#repass').val()) !== "")){
           $('.button').css({"background": "#1c4d9c"});
         } else {
           $('.button').css({"background": "#c9c9c9"});
@@ -73,36 +74,35 @@
       });
     },
     methods:{
-      toggle: function () {
+      /*toggle: function () {
         this.isCheck = !this.isCheck;
-      },
-      /*check:function () {
+      },*/
+      check:function () {
         var account = this.account;
         var password = this.password;
         var repass = this.repass;
         var myreg = /^[a-zA-Z0-9_-]{4,8}$/;
-        var regex = new RegExp('(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{5,9}');
-        if( myreg.test(account) && (password === repass) && (regex.test(password)))
+        var regex = /^(?![A-Z]+$)(?![a-z]+$)(?!\d+$)(?![\W_]+$)\S{6,16}$/ ;
+        if( (myreg.test(account))&&(password === repass) &&(regex.test(password)))
         {
-          console.log(this.username,this.password,repass);
-          //$(".button").css({"background":"#00457e"});
-          this.insert_user();
-          this.$router.push("/signin");/!*$router.push和router-link to是一样的*!/
+          this.insert_account();
+          this.$router.push("/signin");/*$router.push和router-link to一样*/
         }
       },
-      insert_user:function () {
+      insert_account:function () {
         var account=this.account;
         var password=this.password;
-        Axios.get('http://localhost:3000/insert_user',{
-          params:{
+        Axios.post('http://localhost:3000/users/insert_account', qs.stringify({
             account:account,
             password:password
+          }),
+          {headers: {
+            'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'
           }
-        }).then(function(res){
+          }).then(function(res){
           console.log(res.data);
         })
-      },*/
-
+      },
       check_username:function () {
         var _this = this;
         Axios.get('http://localhost:3000/users/check_account',{
@@ -114,12 +114,20 @@
             //alert(key);//json对象的key
             //alert(res.data[0][key]);//json对象的值
             if(res.data[0][key] === 1){
-              _this.before_username="This name is already used.";
+              _this.before_account="This name is already used.";
             }else{
-              _this.before_username="";
+              _this.before_account="";
             }
           }
         })
+      },
+      check_password:function () {
+        var _this = this;
+        if(this.password === this.repass){
+          _this.after_repass="";
+        }else{
+          _this.after_repass="Password and confirm password not consistent!";
+        }
       }
     }
   }
@@ -137,14 +145,14 @@
 
   .input{ width: 5.4rem; height: 0.8rem; line-height: 0.8rem; border-bottom: 0.01rem solid #e7e7e7;
     margin: 0 0.4rem 0.2rem 0.4rem; }
-  .beforeusername {width: 100%; height: 0.8rem; line-height: 0.8rem; font-size: 0.2rem; color:red;}
+  .before-account {width: 100%; height: 0.8rem; line-height: 0.8rem; font-size: 0.2rem; color:red;}
   .input span{ width: 0.6rem; height:0.8rem; line-height: 0.8rem; display: block; text-align: center; float: left;
     color: #c9c9c9; font-size: 0.3rem;}
   .input input{ width: 4.7rem;height: 0.8rem; line-height: 0.8rem; font-size: 0.25rem; color: #c9c9c9;
     border: none; background: transparent; outline: none; }
-
+  .after-repass {width: 100%; height: 0.8rem; line-height: 0.8rem; font-size: 0.2rem; color:red;}
   .button{height: 0.8rem; line-height: 0.8rem; background: #c9c9c9; color: #ffffff;
-    width: 6.2rem; font-size: 0.3rem; border-radius: 0.08rem; margin: 1rem 0.1rem ; }
+    width: 6.2rem; font-size: 0.3rem; border-radius: 0.08rem; margin: 0.1rem 0.1rem 1rem 0.1rem; }
 
   .forget-password{text-align: center; border: none; height: 1rem; line-height: 1rem; font-size: 0.25rem;}
   .forget-password a{ color: #1c4d9c; text-decoration-line: underline;}
