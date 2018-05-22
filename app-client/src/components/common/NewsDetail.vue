@@ -30,8 +30,8 @@
         Axios.defaults.withCredentials = true;
         Axios.get('http://localhost:3000/newsDetail',{params: {newsId: nid}}).then((res)=>{
           /*获取vue路由上传来的参数nid，作为get请求的参数传给server*/
-          /*测试数据请求
-          console.log(res.data);*/
+          /*测试数据请求*/
+          //console.log(res.data);
           this.newsDetail = this.newsDetail.concat(res.data);
         });
       }
