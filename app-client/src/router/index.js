@@ -3,10 +3,10 @@ import Router from 'vue-router';
 import Index from '@/components/index/index.vue';
 import News from '@/components/index/News.vue';
 import NewsCommentAdd from '@/components/common/NewsCommentAdd.vue';
-import Me from '@/components/index/MeReg.vue';
+import CreateAccount from '@/components/index/CreateAccount.vue';
 import MeMainPage from '@/components/index/MeMainPage.vue';
 import MeChange from '@/components/index/MeChange.vue';
-import SignIn from '@/components/index/MeSignIn.vue';
+import SignIn from '@/components/index/SignIn.vue';
 import Settings from '@/components/index/Settings.vue';
 
 
@@ -33,6 +33,11 @@ export default new Router({
       path: '/settings',
       name: 'Settings',
       component: Settings
+    },
+    {
+      path: '/createaccount',
+      name: 'CreateAccount',
+      component: CreateAccount,
     },
     {
       path: '/signin',
