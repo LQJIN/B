@@ -9,3 +9,12 @@ exports.check_account = function (req,res,next) {
         return res.json(result);
     });
 };
+
+/*插入用户账号*/
+exports.insert_account = function (req, res, next) {
+    var account = req.body.account;//获取账户名
+    var password = req.body.password;//获取密码
+    user_model.insertAccount (account, password, function (result) {
+        return res.json(result);
+    })
+};
