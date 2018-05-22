@@ -14,6 +14,7 @@ exports.query = function (sql, param, callback) {
                 throw error;
             }else{
                 callback && callback(results);
+                /*callback(results) && callback(results.affectedRows);*/
             }
             connection.release();
         });
