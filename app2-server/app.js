@@ -28,7 +28,7 @@ app.use(cors({
     origin:'http://localhost:8088',//允许域访问
     methods:['GET','POST'],//只允许get和post请求
     credentials:true,//是否带cookie
-    header:'Content-Type, Content-Length, Authorization, Accept, X-Requested-With'
+    /*header:'Content-Type, Content-Length, Authorization, Accept, X-Requested-With'*/
 }));
 
 
