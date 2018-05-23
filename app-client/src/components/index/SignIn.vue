@@ -2,19 +2,20 @@
   <div class="sign-in">
     <sign-head></sign-head>
     <div class="sign-content" id="sign-content">
+      <div class="before-account" >{{before_account}}</div>
       <div class="name input">
         <span class="fa fa-user-circle-o"></span>
-        <input type="text" name="name" id="account" placeholder="Username"
-               v-model="tel" v-on:blur="check_tel" v-on:input ="inputFunc"/>
+        <input type="text" name="name" id="account" placeholder="account"
+               v-model="account" />
       </div>
       <div class="pass input">
         <span class="fa fa-key"></span>
-        <input type="password" name="pass" id="password" placeholder="Password 6-10 characters"
+        <input type="password" name="pass" id="password" placeholder="password"
                v-model="password"/>
       </div>
-      <router-link to="/memainpage">
-        <div class="button" >Sign in</div>
-      </router-link>
+      <a>
+        <div class="button" v-on:click="signin">Sign in</div>
+      </a>
 
       <div class="create-account">
         <p>No account?<router-link to="/createaccount" >Create one</router-link></p>
@@ -28,6 +29,7 @@
 <script>
   import SignHead from '../common/SignHead.vue'
   import Axios from 'axios'
+  import qs from 'qs'
   import $ from 'jquery'
 
   export default {
@@ -35,8 +37,9 @@
       return{
         isCheck: true,
         isNowPage: true,
-        tel:"",
-        password:""
+        account:"",
+        password:"",
+        before_account:""
       }
     },
     components: {
@@ -44,6 +47,7 @@
     },
     mounted(){
       this.$store.dispatch('changeTitle', 'Sign in');
+
       $("input").focus(function () {
         $(this).parent().css({"border-bottom": "0.01rem solid #000000"});
       });
@@ -59,10 +63,27 @@
       });
     },
     methods:{
-      /*changeTitle: function(){
+      signin:function() {
+        var _this = this;
+        Axios.post('http://localhost:3000/users/sign_in', qs.stringify({
+            account : _this.account,
+            password : _this.password
+          }),
+          {headers: {
+              'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'
+            }
+          }).then(function(res){
+          /*console.log(res.data[0].userid);//测试对应的userid*/
+          var token = res.data[0].userid;
+          document.cookie = "logined=" + token;
+          document.cookie = "login_id=" + res.data[0].userid;
+          _this.$router.push("/personal");
+        });
+        /*changeTitle: function(){
         this.$store.dispatch('changeTitle', 'Sign in');
         //this.$store.dispatch是固定的，去触发vuex下的方法，changeTitle是store里actions下的方法
       }*/
+      }
     }
   }
 </script>
@@ -80,7 +101,10 @@
 
   .input{ width: 5.4rem;height: 0.8rem; line-height: 0.8rem; /*text-align: left;*/
     border-bottom: 0.01rem solid #e7e7e7; /*padding: 0.2rem 0 0.1rem 0;*/margin: 0 0.4rem 0.2rem 0.4rem;}
-  .name{ margin-top: 0.4rem;}
+
+  .before-account {width: 100%; height: 0.8rem; line-height: 0.8rem; font-size: 0.2rem; color:red;}
+
+
   .input span{ width: 0.6rem; height:0.8rem; line-height: 0.8rem; display: block; text-align: center; float: left;
     color: #c9c9c9; font-size: 0.3rem;}
   .input input{ width: 4.7rem;height: 0.8rem; line-height: 0.8rem; font-size: 0.25rem; color: #c9c9c9;
