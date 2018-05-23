@@ -97,11 +97,20 @@
             password:password
           }),
           {headers: {
-            'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'
-          }
+              'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'
+            }
           }).then(function(res){
           console.log(res.data);
         })
+        /*提交账户密码get方法不好使，浏览器报错，只能用post方法带着请求头
+        Axios.get('http://localhost:3000/users/insert_account', {
+          params:{
+            account:this.account,
+            password:this.password
+          }
+        }).then(function(res){
+          console.log(res.data);
+        })*/
       },
       check_account:function () {
         var _this = this;
