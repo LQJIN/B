@@ -1,7 +1,7 @@
 <template>
-  <div class="me-main-page">
-    <me-head></me-head>
-    <div class="me-main-page-content">
+  <div class="personal">
+    <sign-head></sign-head>
+    <div class="personal-content">
 
       <div class="account">
         <router-link to="/mechange">
@@ -27,13 +27,32 @@
         </ul>
       </div>
     </div>
-    <foot v-bind:class="{'isMe':isNowPage}"></foot>
+    <!--<foot v-bind:class="{'isMe':isNowPage}"></foot>-->
   </div>
 </template>
 
+<script>
+  import SignHead from '../common/SignHead.vue'
+  import Foot from '../common/Foot.vue'
+
+  export default {
+    data(){
+      return{
+        isNowPage: true
+      }
+    },
+    components:{
+      SignHead
+    },
+    mounted(){
+      this.$store.dispatch('changeTitle', 'Personal center');
+    }
+  }
+</script>
+
 <style scoped>
 
-  .me-main-page-content {padding: 0 0.3rem; width:5.8rem; position: absolute; top:1rem; bottom: 0; text-align: center;
+  .personal-content {padding: 0 0.3rem; width:5.8rem; position: absolute; top:1rem; bottom: 0; text-align: center;
     background: -webkit-linear-gradient(#1649a9, #dadada); margin: 0 0 0.7rem 0;}
 
   .account{ height: 2.5rem; width: 100%; margin-top: 0.4rem;}
@@ -50,20 +69,3 @@
   .features ul li:nth-child(3){flex: 1;}
   .features ul li:nth-child(4){flex: 1;}
 </style>
-
-<script>
-  import MeHead from '../common/MeHead.vue'
-  import Foot from '../common/Foot.vue'
-
-  export default {
-    components:{
-      MeHead,
-      Foot
-    },
-    data(){
-      return{
-        isNowPage: true
-      }
-    }
-  }
-</script>
