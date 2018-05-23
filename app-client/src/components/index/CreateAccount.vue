@@ -6,12 +6,12 @@
       <div class="name input">
         <span class="fa fa-user-circle-o"></span>
         <input type="text" name="account" id="account" placeholder="account (4-8 characters)"
-               v-model="account" v-on:blur="check_username"/>
+               v-model="account" v-on:blur="check_account"/>
         <!--v-on:blur="check_username"blur()当输入域失去焦点触发 -->
       </div>
       <div class="pass input">
         <span class="fa fa-key"></span>
-        <input type="password" name="pass" id="password" placeholder="password 6-16character&number&special symbol"
+        <input type="password" name="pass" id="password" placeholder="password (6-16 characters)"
                v-model="password"/>
       </div>
       <div class="repass input">
@@ -103,7 +103,7 @@
           console.log(res.data);
         })
       },
-      check_username:function () {
+      check_account:function () {
         var _this = this;
         Axios.get('http://localhost:3000/users/check_account',{
           params:{
@@ -114,7 +114,7 @@
             //alert(key);//json对象的key
             //alert(res.data[0][key]);//json对象的值
             if(res.data[0][key] === 1){
-              _this.before_account="This name is already used.";
+              _this.before_account="This account has already been used.";
             }else{
               _this.before_account="";
             }
