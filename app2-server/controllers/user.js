@@ -16,6 +16,7 @@ exports.insert_account = function (req, res, next) {
     var account = req.body.account;//获取账户名
     var password = req.body.password;//获取密码
     user_model.insertAccount (account, password, function (result) {
+        req.session.id = result[0].userid;
         return res.json(result);
     });
 };
