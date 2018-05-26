@@ -3,10 +3,12 @@
     <ul>
       <li><p class="fa">NewsDaily</p></li>
       <li><span class="fa fa-search"></span></li>
-      <li><router-link to="/signin" ><span class="fa fa-user"></span></router-link></li>
+      <li><router-link to="/personal"><span class="fa fa-user"></span></router-link></li>
+     <!-- <li><router-link to="/signin" ><span class="fa fa-user"></span></router-link></li>-->
     </ul>
   </div>
 </template>
+
 
 <style scoped>
   .head { display: flex; height: 0.6rem; line-height: 0.6rem;
