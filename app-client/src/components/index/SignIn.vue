@@ -1,7 +1,7 @@
 <template>
   <div class="sign-in">
     <sign-head></sign-head>
-    <div class="sign-content" id="sign-content">
+    <div class="sign-content">
       <div class="before-account" >{{before_account}}</div>
       <div class="name input">
         <span class="fa fa-user-circle-o"></span>
@@ -73,12 +73,13 @@
               'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'
             }
           }).then(function(res){
-          /*console.log(res.data[0].userid);//测试对应的userid*/
+          //console.log(res.data[0].userid);//测试对应的userid
           var token = res.data[0].userid;
           document.cookie = "logined=" + token;
           document.cookie = "login_id=" + res.data[0].userid;
           _this.$router.push("/personal");
         });
+        this.$store.dispatch('changeLogin','100');//判断登陆，登陆后设置isLogin为100，登出后设置为1
         /*changeTitle: function(){
         this.$store.dispatch('changeTitle', 'Sign in');
         //this.$store.dispatch是固定的，去触发vuex下的方法，changeTitle是store里actions下的方法
