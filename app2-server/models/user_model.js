@@ -11,6 +11,11 @@ exports.insertAccount = function (account, password, callback) {
 };
 
 exports.signIn = function (account, password, callback) {
-    var sql = "select * from user where account = ? and password = ?";
+    var sql = "select userid from user where account = ? and password = ?";
     db.query(sql, [account,password], callback);
+};
+
+exports.accountById = function (accountId, callback) {
+    var sql = "select * from user where userid = ? ";
+    db.query(sql, [accountId], callback);
 };
