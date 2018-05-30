@@ -4,7 +4,7 @@ var router = express.Router();
 var news = require('../controllers/news.js');
 
 
-/* GET home page */
+/* GET all news page */
 router.get('/index', news.index);
 
 /* GET news detail page */
