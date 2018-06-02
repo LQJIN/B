@@ -1,6 +1,13 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Index from '@/components/index/index.vue';
+import newsHome from '@/components/index/newsHome.vue';
+import newsChina from '@/components/index/newsChina.vue';
+import newsWorld from '@/components/index/newsWorld.vue';
+import newsBusiness from '@/components/index/newsBusiness.vue';
+import newsSports from '@/components/index/newsSports.vue';
+import newsOpinion from '@/components/index/newsOpinion.vue';
+import newsLife from '@/components/index/newsLife.vue';
 import News from '@/components/index/News.vue';
 import NewsCommentAdd from '@/components/common/NewsCommentAdd.vue';
 import CreateAccount from '@/components/index/CreateAccount.vue';
@@ -16,7 +23,16 @@ export default new Router({
     {
       path: '/',
       name: 'Index',
-      component: Index
+      component: Index,
+      children: [
+        { path: "/Home", component: newsHome },
+        { path: "/China", component: newsChina },
+        { path: "/World", component: newsWorld },
+        { path: "/Business", component: newsBusiness },
+        { path: "/Sports", component: newsSports },
+        { path: "/Opinion", component: newsOpinion },
+        { path: "/Life", component: newsLife }
+      ]
     },
     {
       path: '/news/:nid',/*获取组件中的nid*/
