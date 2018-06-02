@@ -13,6 +13,8 @@ router.get('/getNewsByTagId', news.getNewsByTagId);*/
 /* GET news detail page */
 router.get('/newsDetail', news.detail);
 router.get('/newsCommentNum', news.newsCommentNum);
+router.get('/commentDetail', news.commentDetail);
+
 /* GET news newsChina page */
 router.get('/newsChina', news.newsChina);
 router.get('/newsWorld', news.newsWorld);
