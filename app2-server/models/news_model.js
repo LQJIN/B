@@ -9,6 +9,10 @@ exports.getNewsDetail = function (newsId, callback) {
     var sql = "select * from news where nid = ? ";
     db.query(sql,[newsId],callback);
 };
+exports.getNewsCommentNum = function (newsId, callback) {
+    var sql = "select count(a.cid) as comm from comment a where a.idnews = ? ";
+    db.query(sql,[newsId],callback);
+};
 /*exports.getNewsByTagId = function (tagId, callback) {
     var sql = "select * from news where tid = ?";
     db.query(sql,[tagId],callback);
