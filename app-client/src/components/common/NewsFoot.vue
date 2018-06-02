@@ -1,15 +1,15 @@
 <template>
   <div class="news-foot">
     <ul class="foot-list">
-      <li>
+      <!--<li>
         <a v-on:click="msgAdd()">
           <h5>{{msg}}</h5>
           <span class="fa fa-thumbs-o-up"></span>
         </a>
-      </li>
-      <li>
+      </li>-->
+      <li v-for="num in commentNum">
         <router-link to="/comment">
-          <h5>6</h5>
+          <h5>{{num.comm}}</h5>
           <span class="fa fa-commenting-o"></span>
         </router-link>
       </li>
@@ -52,13 +52,14 @@
 </template>
 
 <script>
+  import Axios from 'axios'
   import $ from 'jquery'
 
   export default {
     data(){
-      let msg = 0;
-      return {
-        msg
+      return{
+        newsId: this.$route.params,//this.$route.params.是固定的,获取url传来的参数nid
+        commentNum:[]
       }
     },
     mounted:function () {
@@ -67,12 +68,25 @@
           e.preventDefault(); //阻止默认点击事件
           $('.popup').toggleClass('show');
         })
-      })
+      });
+      this.loadData();
     },
     methods:{
-      msgAdd(){
+      loadData(){
+        /*测试输出url上的nid
+        console.log(this.newsId.nid);*/
+        var nid = this.newsId.nid;
+        Axios.defaults.withCredentials = true;
+        Axios.get('http://localhost:3000/newsCommentNum',{params: {newsId: nid}}).then((res)=>{
+          /*获取vue路由上传来的参数nid，作为get请求的参数传给server*/
+          /*测试数据请求*/
+          console.log(res.data);
+          this.commentNum = this.commentNum.concat(res.data);
+        });
+      }
+      /*msgAdd(){
         this.msg++;
-      }/*,
+      },
       toggle:function () {
         this.isEmpty = !this.isEmpty;
       }*/
@@ -83,10 +97,10 @@
 <style scoped>
   .news-foot{position:fixed; width: 100%; bottom: 0; }
 
-  .foot-list {display: flex; height: 0.6rem;line-height: 0.6rem;}
+  .foot-list {display: flex; height: 0.6rem;line-height: 0.6rem; border-top: 0.02rem solid #e7e7e7;}
   .foot-list li {flex: 1;  background-color: #ffffff; text-align: center; font-size: 0.3rem;}
   .foot-list li:nth-child(3){padding-top: 0.02rem;}
-  .news-foot a{display: inline-block; width: 100%;height: 100%; color: #1c4d9c; text-align:center;}
+  .news-foot a{display: inline-block; width: 100%;height: 100%; color: #999999; text-align:center;}
 
   .news-foot span{width: 0.44rem; height: 0.6rem; line-height: 0.6rem;  font-size: 0.3rem;}
   .news-foot h5{ display: inline-block; text-align: center; position: relative; font-size: 0.25rem;}
