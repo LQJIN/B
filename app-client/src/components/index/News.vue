@@ -2,7 +2,7 @@
   <div class="news">
     <news-head></news-head>
     <news-detail></news-detail>
-    <news-comment></news-comment>
+    <!--<news-comment></news-comment>-->
     <news-foot></news-foot>
   </div>
 </template>
@@ -21,7 +21,7 @@
     components:{
       NewsHead,
       NewsDetail,
-      NewsComment,
+      /*NewsComment,*/
       NewsFoot
     }
   }
