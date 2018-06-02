@@ -38,6 +38,16 @@ exports.newsCommentNum = function (req, res, next) {
         return res.json(results);
     });
 };
+exports.commentDetail = function (req, res, next) {
+    var newsId = req.query.newsId;//获取url上的nid
+    //console.log(newsId);
+    news_model.getcommentDetail (newsId, function (results) {
+        return res.json(results);
+    });
+};
+
+
+
 exports.newsChina = function (req, res, next) {
     news_model.getNewsChina ( function (results) {
         return res.json(results);
