@@ -40,7 +40,7 @@ export default new Router({
       component: News
     },
     {
-      path: '/comment',
+      path: '/comment/:nid',/*获取组件中的nid*/
       name: 'NewsCommentAdd',
       component: NewsCommentAdd
     },
