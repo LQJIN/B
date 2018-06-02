@@ -4,11 +4,10 @@ import Index from '@/components/index/index.vue';
 import News from '@/components/index/News.vue';
 import NewsCommentAdd from '@/components/common/NewsCommentAdd.vue';
 import CreateAccount from '@/components/index/CreateAccount.vue';
-import MeMainPage from '@/components/index/MeMainPage.vue';
+import Personal from '@/components/index/Personal.vue';
 import MeChange from '@/components/index/MeChange.vue';
 import SignIn from '@/components/index/SignIn.vue';
 import Settings from '@/components/index/Settings.vue';
-
 
 Vue.use(Router);
 
@@ -45,9 +44,10 @@ export default new Router({
       component: SignIn
     },
     {
-      path: '/memainpage',
-      name: 'MeMainPage',
-      component: MeMainPage
+      path: '/personal',
+      name: 'Personal',
+      component: Personal,
+      meta:{ auth : true } // 设置当前路由需要校验  不需要校验的路由就不用写
     },
     {
       path: '/mechange',
