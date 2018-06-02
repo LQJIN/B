@@ -30,6 +30,14 @@ exports.detail = function (req, res, next) {
         return res.json(results);
     });
 };
+//跟据id获取评论数
+exports.newsCommentNum = function (req, res, next) {
+    var newsId = req.query.newsId;//获取url上的nid
+    //console.log(newsId);
+    news_model.getNewsCommentNum (newsId, function (results) {
+        return res.json(results);
+    });
+};
 exports.newsChina = function (req, res, next) {
     news_model.getNewsChina ( function (results) {
         return res.json(results);
