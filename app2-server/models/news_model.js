@@ -9,6 +9,41 @@ exports.getNewsDetail = function (newsId, callback) {
     var sql = "select * from news where nid = ? ";
     db.query(sql,[newsId],callback);
 };
+/*exports.getNewsByTagId = function (tagId, callback) {
+    var sql = "select * from news where tid = ?";
+    db.query(sql,[tagId],callback);
+};*/
+exports.getNewsChina = function (callback) {
+    var sql = "select a.nid,a.title,a.content,a.time from news a where a.tid = 1 group by a.nid desc";
+    db.query(sql,[],callback);
+};
+exports.getNewsWorld = function (callback) {
+    var sql = "select a.nid,a.title,a.content,a.time from news a where a.tid = 2 group by a.nid desc";
+    db.query(sql,[],callback);
+};
+exports.getNewsBusiness = function (callback) {
+    var sql = "select a.nid,a.title,a.content,a.time from news a where a.tid = 3 group by a.nid desc";
+    db.query(sql,[],callback);
+};
+exports.getNewsSports = function (callback) {
+    var sql = "select a.nid,a.title,a.content,a.time from news a where a.tid = 4 group by a.nid desc";
+    db.query(sql,[],callback);
+};
+exports.getNewsOpinion = function (callback) {
+    var sql = "select a.nid,a.title,a.content,a.time from news a where a.tid = 5 group by a.nid desc";
+    db.query(sql,[],callback);
+};
+exports.getNewsLife = function (callback) {
+    var sql = "select a.nid,a.title,a.content,a.time from news a where a.tid = 6 group by a.nid desc";
+    db.query(sql,[],callback);
+};
+
+
+
+
+
+
+
 
 /*server*/
 exports.getNewsCommentTag = function (callback) {
