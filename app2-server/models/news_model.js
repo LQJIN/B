@@ -12,7 +12,7 @@ exports.getNewsDetail = function (newsId, callback) {
 
 /*server*/
 exports.getNewsCommentTag = function (callback) {
-    var sql = "select a.nid,a.title,a.content,a.time,t.name,count(b.idnews) as comm from news a left join tag t on a.tid=t.tagid left join comment b on a.nid=b.idnews group by a.nid";
+    var sql = "select a.nid,a.title,a.content,a.time,t.name,count(b.idnews) as comm from news a left join tag t on a.tid=t.tagid left join comment b on a.nid=b.idnews group by a.nid desc";
     db.query(sql,[],callback);
 };
 exports.insertArticle = function (title,content,tag,nowTime,callback) {
