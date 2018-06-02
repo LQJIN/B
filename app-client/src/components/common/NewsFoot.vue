@@ -8,7 +8,7 @@
         </a>
       </li>-->
       <li v-for="num in commentNum">
-        <router-link to="/comment">
+        <router-link v-bind:to="'/comment/'+ newsId.nid ">
           <h5>{{num.comm}}</h5>
           <span class="fa fa-commenting-o"></span>
         </router-link>
