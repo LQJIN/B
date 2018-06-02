@@ -3,7 +3,8 @@
     <!--<img src="./assets/logo.png">-->
     <ahead></ahead>
     <slide-horizontal></slide-horizontal>
-    <news-list></news-list>
+    <router-view></router-view>
+    <!--<news-list></news-list>-->
   </div>
 </template>
 
@@ -15,7 +16,7 @@
   import Ahead from "../common/Head.vue"
   /*import Foot from "../common/Foot.vue"*/
   import SlideHorizontal from "../common/SlideHorizontal.vue"
-  import NewsList from "./NewsList.vue"
+  /*import NewsList from "./NewsList.vue"*/
 
   export default {
 
@@ -23,7 +24,7 @@
       Ahead,
       /*Foot,*/
       SlideHorizontal,
-      NewsList
+      /*NewsList*/
     },
     data(){
       return{
