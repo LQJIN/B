@@ -14,6 +14,7 @@ router.get('/getNewsByTagId', news.getNewsByTagId);*/
 router.get('/newsDetail', news.detail);
 router.get('/newsCommentNum', news.newsCommentNum);
 router.get('/commentDetail', news.commentDetail);
+router.post('/commentPost', news.commentPost);
 
 /* GET news newsChina page */
 router.get('/newsChina', news.newsChina);
