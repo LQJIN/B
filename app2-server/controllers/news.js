@@ -45,6 +45,22 @@ exports.commentDetail = function (req, res, next) {
         return res.json(results);
     });
 };
+exports.commentPost = function (req, res, next) {
+    var newsId = req.body.news_id;//获取post参数
+    var userId = req.body.login_id;
+    var commenttext = req.body.commenttext;
+    var time = new Date();
+    var nowTime = time.toLocaleDateString(); //获取当前日期
+    news_model.getCommentPost (newsId,userId,commenttext,nowTime, function (results) {
+        return res.json(results);
+    });
+};
+exports.personalcomment = function (req, res, next) {
+    var userId = req.query.id;
+    news_model.getpersonalcomment (userId, function (results) {
+        return res.json(results);
+    });
+};
 
 
 
