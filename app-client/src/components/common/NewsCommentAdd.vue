@@ -22,10 +22,8 @@
         </ul>
       </div>
       <div class="comment-sent">
-        <form action="" method="post">
-          <input type="text" title="comment" placeholder="make comments"/>
-          <button type="submit">Send</button>
-        </form>
+        <input type="text" title="comment" name="commenttext" v-model="commenttext" placeholder="make comments"/>
+        <button type="submit" v-on:click="send">Send</button>
       </div>
     </div>
     <div class="content-bg"></div>
@@ -34,16 +32,25 @@
 
 <script>
   import Axios from 'axios'
+  import qs from 'qs'
 
   export default {
     data(){
       return{
         newsId: this.$route.params,//this.$route.params.是固定的,获取NewsFoot.vue url传来的参数nid
-        commentDetail:[]
+        commentDetail:[],
+        commenttext:'',
+        login_id:0,
+        /*logined:''*/
       }
     },
     mounted: function () {
       this.loadData();
+      if(document.cookie !== ""){
+        var arr = document.cookie.split(";")[1];
+        var new_arr = arr.split("=")[1];
+        this.login_id = new_arr;
+      }
     },
     methods: {
       goBack:function () {
@@ -60,6 +67,26 @@
           //console.log(res.data);
           this.commentDetail = this.commentDetail.concat(res.data);
         });
+      },
+      send:function() {
+        var _this=this;
+        //alert(_this.login_id);
+        Axios.post('http://localhost:3000/commentPost', qs.stringify({
+            commenttext : _this.commenttext,
+            login_id : _this.login_id,
+            news_id:_this.newsId.nid
+          }),
+          {headers: {
+              'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'
+            }
+          }).then(function(res){
+          _this.$router.push('/comment/'+ _this.newsId.nid);
+        });
+        /*this.$store.dispatch('changeLogin','100');*///判断登陆，登陆后设置isLogin为100，登出后设置为1
+        /*changeTitle: function(){
+        this.$store.dispatch('changeTitle', 'Sign in');
+        //this.$store.dispatch是固定的，去触发vuex下的方法，changeTitle是store里actions下的方法
+      }*/
       }
     }
   }
@@ -82,9 +109,9 @@
   .comments .name{ float: left; font-size: 0.25rem;}
   .comments .date{ float: right;}
 
-  .comment-sent{ position: fixed; bottom: 0; width: 100%; height: 1.2rem; background: #eeeeee; }
-  .comment-sent form{margin: 0.2rem 0.2rem 0.2rem 0.22rem;}
-  .comment-sent input{ width: 4.2rem; height: 0.8rem; font-size: 0.22rem; border: none; padding-left: 0.2rem;}
-  .comment-sent button{ width: 1.4rem; height: 0.8rem; background: #1c4d9c;
+  .comment-sent{ position: fixed; bottom: 0; width: 100%; height: 0.6rem; background: #eeeeee; padding: 0.15rem 0.2rem;}
+  /*.comment-sent form{margin: 0.2rem 0.2rem 0.2rem 0.22rem;}*/
+  .comment-sent input{ width: 4.2rem; height: 0.6rem; font-size: 0.22rem; border: none; padding-left: 0.2rem;}
+  .comment-sent button{ width: 1.4rem; height: 0.6rem; background: #1c4d9c;
     border: none; color: #ffffff; margin-left: 0.1rem; font-size: 0.25rem;}
 </style>
