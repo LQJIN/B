@@ -14,7 +14,7 @@
     <div class="personal-content">
       <div class="account"><img src="../../assets/img/p4.png" alt="">{{user_info.account}}</div>
       <ul class="ul">
-        <li><router-link to="">
+        <li><router-link to="/personalcomment">
           <span class="fa fa-commenting-o"></span> My comments<span class="fa fa-angle-right"></span>
         </router-link></li>
         <!--<li><router-link to="">
