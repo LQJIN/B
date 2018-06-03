@@ -4,7 +4,7 @@
     <!--<h2>{{$store.state.title}}</h2>//这里使用store下的state-->
     <h2>{{$store.state.title}}</h2>
     <slot>
-      <router-link to="/settings">
+      <router-link to="">
         <span class="fa fa-gear"></span>
       </router-link>
     </slot>
