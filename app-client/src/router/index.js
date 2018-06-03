@@ -12,6 +12,7 @@ import News from '@/components/index/News.vue';
 import NewsCommentAdd from '@/components/common/NewsCommentAdd.vue';
 import CreateAccount from '@/components/index/CreateAccount.vue';
 import Personal from '@/components/index/Personal.vue';
+import PersonalComment from '@/components/index/PersonalComment.vue';
 import MeChange from '@/components/index/MeChange.vue';
 import SignIn from '@/components/index/SignIn.vue';
 import Settings from '@/components/index/Settings.vue';
@@ -68,6 +69,12 @@ export default new Router({
       name: 'Personal',
       component: Personal,
       meta:{ auth : true } // 设置当前路由需要校验  不需要校验的路由就不用写
+    },
+    {
+      path: '/personalcomment',
+      name: 'PersonalComment',
+      component: PersonalComment,
+      /*meta:{ auth : true } // 设置当前路由需要校验  不需要校验的路由就不用写*/
     },
     {
       path: '/mechange',
